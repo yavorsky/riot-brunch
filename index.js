@@ -1,15 +1,24 @@
 var compile = require('riot').compile;
 
 RiotCompiler = function(config) {
-  if (config == null) config = {};
-  var plugin = config.plugins && config.plugins.riot
-  var conv = config.conventions && config.conventions.vendor
+  this.config = (config && config.plugins && config.plugins.riot) || {};
+  console.log("compiling riot======");
+  // The extension or pattern logic makes for some logic mess
+  // We prefer, in this order, an explicit pattern, an explicit
+  // extention, or a default extension
+  if (this.config.pattern) {
+    this.pattern = this.config.pattern;
+  } else if (this.config.extension) {
+    this.extension = this.config.extension;
+  } else {
+    this.pattern = /\.tag$/;
+  }
+  this.pattern = /\.riot$/;
+
 }
 
 RiotCompiler.prototype.brunchPlugin = true;
 RiotCompiler.prototype.type = 'javascript';
-RiotCompiler.prototype.extension = 'tag';
-RiotCompiler.prototype.pattern = /\.tag/;
 
 RiotCompiler.prototype.compile = function(data, path, callback) {
   var compiled;
@@ -34,4 +43,4 @@ RiotCompiler.prototype.compile = function(data, path, callback) {
   return callback(null, result);
 };
 
-module.exports = RiotCompiler
+module.exports = RiotCompiler;
