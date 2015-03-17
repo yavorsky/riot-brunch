@@ -2,7 +2,7 @@ var compile = require('riot').compile;
 
 RiotCompiler = function(config) {
   this.config = (config && config.plugins && config.plugins.riot) || {};
-  console.log("compiling riot======");
+  console.log("compiling riot with ======");
   // The extension or pattern logic makes for some logic mess
   // We prefer, in this order, an explicit pattern, an explicit
   // extention, or a default extension
@@ -12,22 +12,25 @@ RiotCompiler = function(config) {
     this.extension = this.config.extension;
   } else {
     this.pattern = /\.tag$/;
-    this.pattern = /\.riot$/;
   }
-
+  this.compiler_options = {};
+  // this.compiler_options.template = 'jade';
+  if (this.config.template) {
+    this.compiler_options.template = this.config.template;
+  }
+  this.compiler_options.type = this.config.type;
+  console.dir(this.config);
+  console.dir(this.compiler_options);
 }
 
 RiotCompiler.prototype.brunchPlugin = true;
 RiotCompiler.prototype.type = 'javascript';
 
 RiotCompiler.prototype.compile = function(data, path, callback) {
-  console.log("compiling " + path);
+  console.log("compiling-->" + path + "\n");
   var compiled;
   try {
-    compiled = compile(data, {
-      template: "jade",
-      type: "coffeescript"
-    });
+    compiled = compile(data, this.compiler_options);
   } catch (err) {
     var loc = err.location,
       error;
