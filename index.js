@@ -12,8 +12,8 @@ RiotCompiler = function(config) {
     this.extension = this.config.extension;
   } else {
     this.pattern = /\.tag$/;
+    this.pattern = /\.riot$/;
   }
-  this.pattern = /\.riot$/;
 
 }
 
@@ -21,6 +21,7 @@ RiotCompiler.prototype.brunchPlugin = true;
 RiotCompiler.prototype.type = 'javascript';
 
 RiotCompiler.prototype.compile = function(data, path, callback) {
+  console.log("compiling " + path);
   var compiled;
   try {
     compiled = compile(data, {
