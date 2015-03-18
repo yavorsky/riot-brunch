@@ -13,6 +13,19 @@ Or, do manual install:
 `"riot-brunch": "git+https://github.com/yavorsky/riot-brunch.git"`.
 
 
+## Configuration
+
+
+```
+  plugins:
+    on: ["riot"]
+    riot:
+      extension: 'tag'   # pattern overrides extension
+      pattern: /\.tag$/  # default
+      template: 'jade'
+      type: 'coffeescript'
+```
+
 ## License
 
 The MIT License (MIT)
