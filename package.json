@@ -12,7 +12,7 @@
     "test": "node_modules/.bin/mocha"
   },
   "dependencies": {
-    "riot": "2.0.13"
+    "riot": "^2.1.0"
   },
   "devDependencies": {
     "mocha": "1.11.0",
