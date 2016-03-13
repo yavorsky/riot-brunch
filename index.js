@@ -27,7 +27,7 @@ RiotCompiler.prototype.type = 'javascript';
 RiotCompiler.prototype.compile = function(data, path, callback) {
   var compiled;
   try {
-    compiled = compile(data, this.compiler_options);
+    compiled = compile(data, this.compiler_options, path);
   } catch (err) {
     var loc = err.location,
       error;
