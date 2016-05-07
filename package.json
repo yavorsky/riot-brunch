@@ -1,6 +1,6 @@
 {
   "name": "riot-brunch",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Adds RiotJS support to brunch.",
   "author": "Artem Yavorsky (http://yavorsky.org)",
   "homepage": "https://github.com/yavorsky/riot-brunch",
