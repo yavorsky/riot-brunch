@@ -48,7 +48,7 @@ class RiotCompiler {
   compile(file) {
     var compiled;
     try {
-      compiled = compile(file.data, this.compiler_options, file.path);
+      compiled = "var riot = require('riot');\nmodule.exports = " + compile(file.data, this.compiler_options, file.path);
     } catch (err) {
       var loc = err.location,
         error;
