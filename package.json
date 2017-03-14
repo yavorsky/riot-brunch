@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "progeny": "^0.5.2",
-    "riot": "^2.3.12"
+    "riot": "^3.3"
   },
   "devDependencies": {
     "babel-core": "^6.4.0",
