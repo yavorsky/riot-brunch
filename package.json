@@ -1,6 +1,6 @@
 {
   "name": "riot-brunch",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "Adds RiotJS support to brunch.",
   "author": "Artem Yavorsky (http://yavorsky.org)",
   "homepage": "https://github.com/yavorsky/riot-brunch",
@@ -12,7 +12,7 @@
     "test": "node_modules/.bin/mocha"
   },
   "dependencies": {
-    "progeny": "^0.5.2",
+    "progeny": "^0.11.0",
     "riot": "^3.3"
   },
   "devDependencies": {
