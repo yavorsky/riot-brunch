@@ -52,7 +52,7 @@ class RiotCompiler {
       if (loc) {
         throw `${loc.first_line}:${loc.first_column} ${err}`;
       }
-      throw err;
+      throw `${err};
     }
   }
 }
