@@ -32,7 +32,7 @@ class RiotCompiler {
         return new Promise((resolve, reject) => {
           progeny({
             rootPath: this.rootPath,
-          })(path, data, (err, res) => {
+          })(file.path, file.data, (err, res) => {
             if (err) {
               reject(err);
             } else {
