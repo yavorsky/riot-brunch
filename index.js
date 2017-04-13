@@ -1,10 +1,10 @@
 'use strict';
-var compile = require('riot').compile;
-var progeny = require('progeny');
+const compile = require('riot').compile;
+const progeny = require('progeny');
 
 class RiotCompiler {
   constructor(config) {
-    this.config = (config && config.plugins && config.plugins.riot) || {};
+    this.config = config.plugins.riot || {};
     this.rootPath = config.paths.root;
 
     // grab any compiler options
@@ -28,14 +28,13 @@ class RiotCompiler {
     // pre-processor supports it, since progeny may fail
     // on types it doesn't support.
     if (this.compiler_options.type == 'jade') {
-      this.getDependencies = function (data, path) {
-        var rootPath = this.rootPath;
-        return new Promise(function (resolve, reject) {
+      this.getDependencies = file => {
+        return new Promise((resolve, reject) => {
           progeny({
-            rootPath: rootPath
-          })(path, data, function (e, res) {
-            if (e) {
-              reject(e);
+            rootPath: this.rootPath,
+          })(path, data, (err, res) => {
+            if (err) {
+              reject(err);
             } else {
               resolve(res);
             }
@@ -46,23 +45,15 @@ class RiotCompiler {
   }
 
   compile(file) {
-    var compiled;
     try {
-      compiled = compile(file.data, this.compiler_options, file.path);
+      return compile(file.data, this.compiler_options, file.path);
     } catch (err) {
-      var loc = err.location,
-        error;
+      const loc = err.location;
       if (loc) {
-        error = loc.first_line + ":" + loc.first_column + " " + (err.toString());
-      } else {
-        error = err.toString();
+        throw `${loc.first_line}:${loc.first_column} ${err}`;
       }
-      return Promise.reject(error);
+      throw err;
     }
-    var result = {
-      data: compiled
-    };
-    return Promise.resolve(result);
   }
 }
 
