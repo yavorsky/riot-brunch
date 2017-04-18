@@ -19,6 +19,6 @@
     "babel-core": "^6.4.0",
     "babel-preset-es2015-riot": "^1.0.1",
     "chai": "1.7.0",
-    "mocha": "1.11.0"
+    "mocha": "3.2.0"
   }
 }
