@@ -6,6 +6,7 @@ class RiotCompiler {
   constructor(config) {
     this.config = config.plugins.riot || {};
     this.rootPath = config.paths.root;
+    this.requireRiot = this.config.requireRiot;
 
     // grab any compiler options
     this.compiler_options = {};
@@ -46,7 +47,11 @@ class RiotCompiler {
 
   compile(file) {
     try {
-      return compile(file.data, this.compiler_options, file.path);
+      let result = compile(file.data, this.compiler_options, file.path);
+      if (this.requireRiot) {
+          result = "var riot = require('riot');\n\n" + result;
+      }
+      return result;
     } catch (err) {
       const loc = err.location;
       if (loc) {
